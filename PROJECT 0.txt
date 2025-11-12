@@ -15,6 +15,7 @@ com.bodytracker
 │   ├── User.java
 │   ├── Measurement.java
 │   └── Exercise.java
+|   └── WorkoutLog.java
 │
 ├── repository/
 │   ├── IRepository.java
@@ -24,4 +25,4 @@ com.bodytracker
 │   └── BodyTrackerService.java
 │
 └── ui/
-    └── Main.java   ← (where you get user input and call the repository)
+    └── Main.java
