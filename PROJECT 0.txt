@@ -1,0 +1,27 @@
+PROJECT 0
+
+- Implement Repository interface
+
+- create PostgreSQL repo that extends Repository --> create schema and tables
+
+- create gym objects: Users (table 1), Measurements (table 2), Exercises (table 3), WorkoutLogs (table 4), OPTIONAL: Predictions (table 5) --> linear regression
+
+
+STRUCTURE:
+
+com.bodytracker
+│
+├── model/
+│   ├── User.java
+│   ├── Measurement.java
+│   └── Exercise.java
+│
+├── repository/
+│   ├── IRepository.java
+│   └── PostgreSQLRepository.java
+│
+├── service/
+│   └── BodyTrackerService.java
+│
+└── ui/
+    └── Main.java   ← (where you get user input and call the repository)
