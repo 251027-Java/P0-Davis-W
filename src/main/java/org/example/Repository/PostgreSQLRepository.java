@@ -27,6 +27,8 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
         }
     }
 
+    // helper method to create each table; helps
+    // clean up the constructor for readability.
     private void createTables() throws SQLException{
         try(Statement stmt = connection.createStatement()){
             stmt.executeUpdate("CREATE SCHEMA IF NOT EXISTS GymReports;"+
@@ -41,11 +43,26 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
                     "measurement_id SERIAL PRIMARY KEY," +
                     "user_id INT REFERENCES GymReports.Users(user_id) ON DELETE CASCADE," +
                     "log_date TIMESTAMP NOT NULL," +
-                    "weight_lbs "
+                    "weight_lbs NUMERICS(5,2)," +
+                    "chest_inches NUMERICS(5,2)," +
+                    "arms_inches NUMERICS(5,2)," +
+                    "waist_inches NUMERICS(5,2)," +
+                    "bodyfat_percent DECIMAL(3,2);");
 
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Exercises (" +
+                    "exercise_id SERIAL PRIMARY KEY," +
+                    "exercise_name VARCHAR(50) UNIQUE NOT NULL," +
+                    "muscle_group VARCHAR(50) NOT NULL);");
+            
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymeReports.WorkoutLogs (" +
+                    "workout_id SERIAL PRIMARY KEY," +
+                    "user_id INT REFERENCES GymReports.Users(user_id) ON DELETE CASCADE," +
+                    "exercise_id INT REFERENCES GymReports.Exercises(exercise_id) ON DELETE CASCADE," +
+                    "log_date TIMESTAMP NOT NULL," +
+                    "set INT NOT NULL," +
+                    "reps INT NOT NULL," +
+                    "weight_lbs NUMERICS(5,2);");
         }
-
-
     }
 
 
