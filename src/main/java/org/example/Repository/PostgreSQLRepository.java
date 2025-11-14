@@ -9,7 +9,7 @@ import org.example.User;
 import org.example.WorkoutLog;
 
 public class PostgreSQLRepository implements IUserRepository,
-IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
+IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExercises {
 
     // Fields
     private static final String Postgre_URL = "jdbc:postgresql://localhost:5432/workoutdb";
@@ -33,13 +33,16 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
         try(Statement stmt = connection.createStatement()){
             stmt.executeUpdate("CREATE SCHEMA IF NOT EXISTS GymReports");
 
+
+            // Creating Users table
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Users (" +
                     "user_id SERIAL PRIMARY KEY," +
                     "first_name VARCHAR(50)," +
                     "last_name VARCHAR(50)," +
                     "email VARCHAR(100) UNIQUE NOT NULL," +
                     "date_joined TIMESTAMP NOT NULL)");
-
+            
+            // Creating Measurements table
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Measurements (" +
                     "measurement_id SERIAL PRIMARY KEY," +
                     "user_id INT REFERENCES GymReports.Users(user_id) ON DELETE CASCADE," +
@@ -50,11 +53,13 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
                     "waist_inches NUMERIC(5,2)," +
                     "bodyfat_percent DECIMAL(3,2))");
 
+            // Creating Exercises table
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Exercises (" +
                     "exercise_id SERIAL PRIMARY KEY," +
                     "exercise_name VARCHAR(50) UNIQUE NOT NULL," +
                     "muscle_group VARCHAR(50) NOT NULL)");
             
+            // Creating WorkoutLogs table
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.WorkoutLogs (" +
                     "workout_id SERIAL PRIMARY KEY," +
                     "user_id INT REFERENCES GymReports.Users(user_id) ON DELETE CASCADE," +
@@ -63,6 +68,14 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
                     "set INT NOT NULL," +
                     "reps INT NOT NULL," +
                     "weight_lbs NUMERIC(5,2))");
+            
+            // Creating UserExercises table; this table establishes a many-to-many
+            // relationship, linking users to their favorite exercises
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.UserExercises (" +
+                    "user_id INT REFERENCES GymReports.Users(user_id) ON DELETE CASCADE," +
+                    "exercise_id INT REFERENCES GymReports.Exercises(exercise_id) ON DELETE CASCADE," +
+                    "PRIMARY KEY (user_id, exercise_id))");
+
 
             System.out.println("All tables created");
         }
@@ -70,19 +83,17 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
 
 
 
-
+    // IWorkoutLogRepository METHODS
     @Override
     public void addWorkoutLog(WorkoutLog workoutLog) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addWorkoutLog'");
     }
-
     @Override
     public List<WorkoutLog> getWorkoutLogsByUser(int userId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getWorkoutLogsByUser'");
     }
-
     @Override
     public List<WorkoutLog> getWorkoutLogsByExercise(int userId, int exerciseId) {
         // TODO Auto-generated method stub
@@ -101,6 +112,10 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
         throw new UnsupportedOperationException("Unimplemented method 'deleteWorkoutLog'");
     }
 
+
+
+
+    //IUserRepository METHODS
     @Override
     public void addUser(User user) {
         // TODO Auto-generated method stub
@@ -131,6 +146,10 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
         throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
     }
 
+
+
+
+    // IExerciseRepository METHODS
     @Override
     public void addExercise(Exercise exercise) {
         // TODO Auto-generated method stub
@@ -161,6 +180,10 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
         throw new UnsupportedOperationException("Unimplemented method 'deleteExercise'");
     }
 
+
+
+
+    // IMeasurementsRepository METHODS
     @Override
     public void addMeasurement(Measurement measurement) {
         // TODO Auto-generated method stub
@@ -190,5 +213,28 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteMeasurement'");
     }
+
+
+
+
+    // IUserExercises METHODS
+    @Override
+    public void addUserExercise(int userId, int exerciseId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addUserExercise'");
+    }
+
+    @Override
+    public void deleteUserExercise(int userId, int exerciseId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteUserExercise'");
+    }
+
+    @Override
+    public List<Exercise> getExercisesForUser(int userId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getExercisesForUser'");
+    }
+    
 
 }
