@@ -20,8 +20,8 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
     public PostgreSQLRepository() {
         try{
             connection = DriverManager.getConnection(Postgre_URL, Postgre_User, Postgre_PW);
-            System.out.println("Successful creation of PostgreSQL database!");
             createTables();
+            System.out.println("Successful creation of PostgreSQL database!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -31,37 +31,40 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository {
     // clean up the constructor for readability.
     private void createTables() throws SQLException{
         try(Statement stmt = connection.createStatement()){
-            stmt.executeUpdate("CREATE SCHEMA IF NOT EXISTS GymReports;"+
-                    "CREATE TABLE IF NOT EXISTS GymReports.Users (" +
+            stmt.executeUpdate("CREATE SCHEMA IF NOT EXISTS GymReports");
+
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Users (" +
                     "user_id SERIAL PRIMARY KEY," +
                     "first_name VARCHAR(50)," +
                     "last_name VARCHAR(50)," +
                     "email VARCHAR(100) UNIQUE NOT NULL," +
-                    "date_joined TIMESTAMP NOT NULL);");
+                    "date_joined TIMESTAMP NOT NULL)");
 
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Measurements (" +
                     "measurement_id SERIAL PRIMARY KEY," +
                     "user_id INT REFERENCES GymReports.Users(user_id) ON DELETE CASCADE," +
                     "log_date TIMESTAMP NOT NULL," +
-                    "weight_lbs NUMERICS(5,2)," +
-                    "chest_inches NUMERICS(5,2)," +
-                    "arms_inches NUMERICS(5,2)," +
-                    "waist_inches NUMERICS(5,2)," +
-                    "bodyfat_percent DECIMAL(3,2);");
+                    "weight_lbs NUMERIC(5,2)," +
+                    "chest_inches NUMERIC(5,2)," +
+                    "arms_inches NUMERIC(5,2)," +
+                    "waist_inches NUMERIC(5,2)," +
+                    "bodyfat_percent DECIMAL(3,2))");
 
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Exercises (" +
                     "exercise_id SERIAL PRIMARY KEY," +
                     "exercise_name VARCHAR(50) UNIQUE NOT NULL," +
-                    "muscle_group VARCHAR(50) NOT NULL);");
+                    "muscle_group VARCHAR(50) NOT NULL)");
             
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymeReports.WorkoutLogs (" +
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.WorkoutLogs (" +
                     "workout_id SERIAL PRIMARY KEY," +
                     "user_id INT REFERENCES GymReports.Users(user_id) ON DELETE CASCADE," +
                     "exercise_id INT REFERENCES GymReports.Exercises(exercise_id) ON DELETE CASCADE," +
                     "log_date TIMESTAMP NOT NULL," +
                     "set INT NOT NULL," +
                     "reps INT NOT NULL," +
-                    "weight_lbs NUMERICS(5,2);");
+                    "weight_lbs NUMERIC(5,2))");
+
+            System.out.println("All tables created");
         }
     }
 

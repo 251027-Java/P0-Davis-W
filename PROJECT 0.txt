@@ -18,7 +18,7 @@ com.bodytracker
 |   └── WorkoutLog.java
 │
 ├── repository/
-│   ├── IRepository.java
+│   ├── IRepository.java --> updated and broke down to 4 separate interface repos
 │   └── PostgreSQLRepository.java
 │
 ├── service/
