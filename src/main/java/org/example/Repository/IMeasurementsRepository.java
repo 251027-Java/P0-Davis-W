@@ -2,13 +2,13 @@ package org.example.Repository;
 
 import java.util.List;
 
-import org.example.Measurement;
+import org.example.Measurements;
 
 public interface IMeasurementsRepository {
     //Measurements
-    void addMeasurement(Measurement measurement);
-    List<Measurement> getMeasurementsByUser(int userId);
-    Measurement getLatestMeasurement(int userId);
-    void updateMeasurement(Measurement measurement);
+    void addMeasurement(Measurements measurement);
+    List<Measurements> getMeasurementsByUser(int userId);
+    Measurements getLatestMeasurement(int userId);
+    void updateMeasurement(Measurements measurement);
     void deleteMeasurement(int measurementId);
 }

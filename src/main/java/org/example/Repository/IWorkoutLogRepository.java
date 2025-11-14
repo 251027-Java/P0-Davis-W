@@ -2,13 +2,13 @@ package org.example.Repository;
 
 import java.util.List;
 
-import org.example.WorkoutLog;
+import org.example.WorkoutLogs;
 
 public interface IWorkoutLogRepository {
     //Workout Logs
-    void addWorkoutLog(WorkoutLog workoutLog);
-    List<WorkoutLog> getWorkoutLogsByUser(int userId);
-    List<WorkoutLog> getWorkoutLogsByExercise(int userId, int exerciseId);
-    void updateWorkoutLog(WorkoutLog workoutLog);
+    void addWorkoutLog(WorkoutLogs workoutLog);
+    List<WorkoutLogs> getWorkoutLogsByUser(int userId);
+    List<WorkoutLogs> getWorkoutLogsByExercise(int userId, int exerciseId);
+    void updateWorkoutLog(WorkoutLogs workoutLog);
     void deleteWorkoutLog(int workoutId);
 }

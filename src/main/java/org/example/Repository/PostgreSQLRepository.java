@@ -3,10 +3,10 @@ package org.example.Repository;
 import java.sql.*;
 import java.util.List;
 
-import org.example.Exercise;
-import org.example.Measurement;
+import org.example.Exercises;
+import org.example.Measurements;
 import org.example.User;
-import org.example.WorkoutLog;
+import org.example.WorkoutLogs;
 
 public class PostgreSQLRepository implements IUserRepository,
 IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExercises {
@@ -85,23 +85,23 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     // IWorkoutLogRepository METHODS
     @Override
-    public void addWorkoutLog(WorkoutLog workoutLog) {
+    public void addWorkoutLog(WorkoutLogs workoutLog) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addWorkoutLog'");
     }
     @Override
-    public List<WorkoutLog> getWorkoutLogsByUser(int userId) {
+    public List<WorkoutLogs> getWorkoutLogsByUser(int userId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getWorkoutLogsByUser'");
     }
     @Override
-    public List<WorkoutLog> getWorkoutLogsByExercise(int userId, int exerciseId) {
+    public List<WorkoutLogs> getWorkoutLogsByExercise(int userId, int exerciseId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getWorkoutLogsByExercise'");
     }
 
     @Override
-    public void updateWorkoutLog(WorkoutLog workoutLog) {
+    public void updateWorkoutLog(WorkoutLogs workoutLog) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateWorkoutLog'");
     }
@@ -151,25 +151,25 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     // IExerciseRepository METHODS
     @Override
-    public void addExercise(Exercise exercise) {
+    public void addExercise(Exercises exercise) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addExercise'");
     }
 
     @Override
-    public Exercise getExerciseById(int id) {
+    public Exercises getExerciseById(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getExerciseById'");
     }
 
     @Override
-    public List<Exercise> getAllExercises() {
+    public List<Exercises> getAllExercises() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAllExercises'");
     }
 
     @Override
-    public void updateExercise(Exercise exercise) {
+    public void updateExercise(Exercises exercise) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateExercise'");
     }
@@ -185,25 +185,25 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     // IMeasurementsRepository METHODS
     @Override
-    public void addMeasurement(Measurement measurement) {
+    public void addMeasurement(Measurements measurement) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addMeasurement'");
     }
 
     @Override
-    public List<Measurement> getMeasurementsByUser(int userId) {
+    public List<Measurements> getMeasurementsByUser(int userId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getMeasurementsByUser'");
     }
 
     @Override
-    public Measurement getLatestMeasurement(int userId) {
+    public Measurements getLatestMeasurement(int userId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getLatestMeasurement'");
     }
 
     @Override
-    public void updateMeasurement(Measurement measurement) {
+    public void updateMeasurement(Measurements measurement) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateMeasurement'");
     }
@@ -231,7 +231,7 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     }
 
     @Override
-    public List<Exercise> getExercisesForUser(int userId) {
+    public List<Exercises> getExercisesForUser(int userId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getExercisesForUser'");
     }

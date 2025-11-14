@@ -2,13 +2,13 @@ package org.example.Repository;
 
 import java.util.List;
 
-import org.example.Exercise;
+import org.example.Exercises;
 
 public interface IExercisesRepository {
     //Exercises
-    void addExercise(Exercise exercise);
-    Exercise getExerciseById(int id);
-    List<Exercise> getAllExercises();
-    void updateExercise(Exercise exercise);
+    void addExercise(Exercises exercise);
+    Exercises getExerciseById(int id);
+    List<Exercises> getAllExercises();
+    void updateExercise(Exercises exercise);
     void deleteExercise(int id);
 }
