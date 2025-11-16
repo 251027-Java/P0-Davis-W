@@ -68,6 +68,39 @@ public class Measurements {
         return this.bodyfat_percent;
     }
 
+    //Setters
+    public void setMeasurementID(int measurement_id){
+        this.measurement_id = measurement_id;
+    }
+
+    public void setUserID(int user_id){
+        this.user_id = user_id;
+    }
+
+    public void setLogDate(Date log_date){
+        this.log_date = log_date;
+    }
+
+    public void setWeight(double weight_lbs){
+        this.weight_lbs = weight_lbs;
+    }
+
+    public void setChest(double chest_inches){
+        this.chest_inches = chest_inches;
+    }
+
+    public void setArms(double arms_inches){
+        this.arms_inches = arms_inches;
+    }
+
+    public void setWaist(double waist_inches){
+        this.waist_inches = waist_inches;
+    }
+
+    public void setBodyFat(double bodyfat_percent){
+        this.bodyfat_percent = bodyfat_percent;
+    }
+
 
 
 }

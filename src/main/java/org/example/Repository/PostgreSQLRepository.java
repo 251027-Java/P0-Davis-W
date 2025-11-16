@@ -238,6 +238,18 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
         throw new UnsupportedOperationException("Unimplemented method 'deleteMeasurement'");
     }
 
+    @Override
+    public Measurements getMeasurementsById(int measurementId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMeasurementsById'");
+    }
+
+    @Override
+    public List<Measurements> getAllMeasurements() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllMeasurements'");
+    }
+
 
 
 
