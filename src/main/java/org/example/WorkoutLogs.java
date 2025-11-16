@@ -61,4 +61,34 @@ public class WorkoutLogs {
     }
     
 
+    //Setters
+    public void setWorkoutID(int workout_id){
+        this.workout_id = workout_id;
+    }
+
+    public void setUserID(int user_id){
+        this.user_id = user_id;
+    }
+
+    public void setExerciseID(int exercise_id){
+        this.exercise_id = exercise_id;
+    }
+
+    public void setDate(Date log_date){
+        this.log_date = log_date;
+    }
+
+    public void setSets(int set){
+        this.sets = set;
+    }
+
+    public void setReps(int reps){
+        this.reps = reps;
+    }
+
+    public void setWeight(double weight_lbs){
+        this.weight_lbs = weight_lbs;
+    }
+
+
 }

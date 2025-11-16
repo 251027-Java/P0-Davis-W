@@ -34,16 +34,16 @@ public class Exercises {
     }
 
     //Setters
-    public int setID(int id){
-        return this.id = id;
+    public void setID(int id){
+        this.id = id;
     }
 
-    public String setName(String name){
-        return this.name = name;
+    public void setName(String name){
+        this.name = name;
     }
 
-    public String setMuscleGroup(String muscle){
-        return this.muscle_group = muscle;
+    public void setMuscleGroup(String muscle){
+        this.muscle_group = muscle;
     }
 
 

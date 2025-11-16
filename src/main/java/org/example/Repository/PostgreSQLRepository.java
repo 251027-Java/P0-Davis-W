@@ -86,8 +86,20 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     // IWorkoutLogRepository METHODS
     @Override
     public void addWorkoutLog(WorkoutLogs workoutLog) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addWorkoutLog'");
+        String sql = "INSERT INTO GymReports.WorkoutLogs (workout_id, user_id, exercise_id, log_date, set, reps, weight_lbs) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setInt(1, workoutLog.getWorkoutID());
+            stmt.setInt(2, workoutLog.getUserID());
+            stmt.setInt(3, workoutLog.getExerciseID());
+            stmt.setDate(4, new java.sql.Date(workoutLog.getLogDate().getTime()));
+            stmt.setInt(5, workoutLog.getSets());
+            stmt.setInt(6, workoutLog.getReps());
+            stmt.setDouble(7, workoutLog.getWeight());
+            stmt.executeUpdate();
+            System.out.println("Workout log created successfully");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     @Override
     public List<WorkoutLogs> getWorkoutLogsByUser(int userId) {
@@ -110,6 +122,18 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     public void deleteWorkoutLog(int workoutId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteWorkoutLog'");
+    }
+
+    @Override
+    public WorkoutLogs getWorkoutLogById(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWorkoutLogById'");
+    }
+
+    @Override
+    public List<WorkoutLogs> getAllWorkoutLogs() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllWorkoutLogs'");
     }
 
 
