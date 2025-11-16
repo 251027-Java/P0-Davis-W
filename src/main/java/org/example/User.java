@@ -48,7 +48,21 @@ public class User {
         return this.date_joined;
     }
 
-    
+    // Setters
+    public void setFirstName(String first_name) {
+        this.first_name = first_name;
+    }
 
+    public void setLastName(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDateJoined(Date date_joined) {
+        this.date_joined = date_joined;
+    }
 
 }
