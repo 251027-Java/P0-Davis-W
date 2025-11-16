@@ -33,6 +33,19 @@ public class Exercises {
         return this.muscle_group;
     }
 
+    //Setters
+    public int setID(int id){
+        return this.id = id;
+    }
+
+    public String setName(String name){
+        return this.name = name;
+    }
+
+    public String setMuscleGroup(String muscle){
+        return this.muscle_group = muscle;
+    }
+
 
 
 }
