@@ -46,7 +46,10 @@ public class WorkoutLogService {
         if(existing == null){
             return false;
         }
-        existing = new WorkoutLogs(workout_id, existing.getUserID(), existing.getExerciseID(), existing.getLogDate(), sets, reps, weight);
+        existing.setWorkoutID(workout_id);
+        existing.setSets(sets);
+        existing.setReps(reps);
+        existing.setWeight(weight);
         workoutLogRepository.updateWorkoutLog(existing);
         return true;
     }
