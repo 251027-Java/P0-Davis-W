@@ -143,8 +143,18 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     //IUserRepository METHODS
     @Override
     public void addUser(User user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addUser'");
+        String sql = "INSERT INTO GymReports.Users (user_id, first_name, last_name, email, date_joined) VALUES ( ?, ?, ?, ?, ?);";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setInt(1, user.getID());
+            stmt.setString(2, user.getFirstName());
+            stmt.setString(3, user.getLastName());
+            stmt.setString(4, user.getEmail());
+            stmt.setDate(5, new java.sql.Date(user.getDateJoined().getTime()));
+            stmt.executeUpdate();
+            System.out.println("User created successfully");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -177,8 +187,16 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     // IExerciseRepository METHODS
     @Override
     public void addExercise(Exercises exercise) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addExercise'");
+        String sql = "INSERT INTO GymReports.Exercises (exercise_id, exercise_name, muscle_group) VALUES ( ?, ?, ?);";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setInt(1, exercise.getID());
+            stmt.setString(2, exercise.getName());
+            stmt.setString(3, exercise.getMuscleGroup());
+            stmt.executeUpdate();
+            System.out.println("Exercise created successfully");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -211,8 +229,21 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     // IMeasurementsRepository METHODS
     @Override
     public void addMeasurement(Measurements measurement) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addMeasurement'");
+        String sql = "INSERT INTO GymReports.Measurements (measurement_id, user_id, log_date, weight_lbs, chest_inches, arms_inches, waist_inches, bodyfat_percent) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setInt(1, measurement.getMeasurementID());
+            stmt.setInt(2, measurement.getUserID());
+            stmt.setDate(3, new java.sql.Date(measurement.getLogDate().getTime()));
+            stmt.setDouble(4, measurement.getWeight());
+            stmt.setDouble(5, measurement.getChest());
+            stmt.setDouble(6, measurement.getArms());
+            stmt.setDouble(7, measurement.getWaist());
+            stmt.setDouble(8, measurement.getBodyFat());
+            stmt.executeUpdate();
+            System.out.println("Measurement created successfully");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -257,8 +288,14 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     // IUserExercises METHODS
     @Override
     public void addUserExercise(UserExercises userExercise) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addUserExercise'");
+        String sql = "INSERT INTO GymReports.UserExercises (user_id, exercise_id) VALUES (?, ?) ON CONFLICT DO NOTHING";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userExercise.getUserID());
+            ps.setInt(2, userExercise.getExerciseID());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
