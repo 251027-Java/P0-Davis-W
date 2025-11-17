@@ -6,6 +6,7 @@ import java.util.List;
 import org.example.Exercises;
 import org.example.Measurements;
 import org.example.User;
+import org.example.UserExercises;
 import org.example.WorkoutLogs;
 
 public class PostgreSQLRepository implements IUserRepository,
@@ -255,15 +256,27 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     // IUserExercises METHODS
     @Override
-    public void addUserExercise(int userId, int exerciseId) {
+    public void addUserExercise(UserExercises userExercise) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addUserExercise'");
     }
 
     @Override
-    public void deleteUserExercise(int userId, int exerciseId) {
+    public void deleteUserExercise(int exerciseId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteUserExercise'");
+    }
+
+    @Override
+    public UserExercises getFavoriteByUserId(int userId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getFavoriteByUserId'");
+    }
+
+    @Override
+    public UserExercises getFavoriteByExerciseId(int exerciseId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getFavoriteByExerciseId'");
     }
 
     @Override

@@ -2,8 +2,6 @@ package org.example.Repository;
 
 import java.util.List;
 
-import org.example.Exercises;
-import org.example.User;
 import org.example.WorkoutLogs;
 
 public interface IWorkoutLogRepository {

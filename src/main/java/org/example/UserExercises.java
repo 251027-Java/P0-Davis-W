@@ -27,4 +27,13 @@ public class UserExercises {
         return this.exercise_id;
     }
 
+    //Setters
+    public void setUserID(int user_id){
+        this.user_id = user_id;
+    }
+    
+    public void setExerciseID(int exercise_id){
+        this.exercise_id = exercise_id;
+    }
+
 }

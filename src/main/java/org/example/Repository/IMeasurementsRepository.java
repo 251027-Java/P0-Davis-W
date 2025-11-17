@@ -3,7 +3,6 @@ package org.example.Repository;
 import java.util.List;
 
 import org.example.Measurements;
-import org.example.User;
 
 public interface IMeasurementsRepository {
     //Measurements
