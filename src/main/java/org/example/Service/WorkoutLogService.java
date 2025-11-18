@@ -31,14 +31,12 @@ public class WorkoutLogService {
         return workoutLogRepository.getWorkoutLogById(workout_id);
     }
 
-    public List<WorkoutLogs> getWorkoutLogsByUser(int user_id){
-        List<WorkoutLogs> allLogs = workoutLogRepository.getAllWorkoutLogs();
-        return allLogs.stream().filter(log -> log.getUserID() == user_id).toList();
+    public WorkoutLogs getWorkoutLogsByUser(int user_id){
+        return workoutLogRepository.getWorkoutLogsByUser(user_id);
     }
 
-    public List<WorkoutLogs> getWorkoutLogByExercise(int user_id, int exercise_id){
-        List<WorkoutLogs> allLogs = workoutLogRepository.getAllWorkoutLogs();
-        return allLogs.stream().filter(log -> log.getUserID() == user_id && log.getExerciseID() == exercise_id) .toList();
+    public WorkoutLogs getWorkoutLogByExercise(int user_id, int exercise_id){
+        return workoutLogRepository.getWorkoutLogsByExercise(user_id, exercise_id);
     }
 
     public boolean updateWorkoutLog(int workout_id, int sets, int reps, double weight){

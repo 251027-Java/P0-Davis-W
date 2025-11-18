@@ -37,4 +37,16 @@ public class ExerciseServiceTest {
         verify(mockRepo, times(1)).addExercise(Mockito.any(Exercises.class));
     }
 
+    @Test
+    public void testCreateExerciseFailsWhenIdExists(){
+        Exercises exists = new Exercises(1, "Squat", "Legs");
+        when(mockRepo.getExerciseById(1)).thenReturn(exists);
+
+        Exercises newExercise = exercise.createExercise(1, "Push Up", "Chest");
+
+        Assertions.assertNull(newExercise);
+
+        verify(mockRepo, never()).addExercise(Mockito.any(Exercises.class));
+    }
+
 }

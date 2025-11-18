@@ -28,10 +28,55 @@ public class WorkoutLogServiceTest {
     @Mock
     private IWorkoutLogRepository measureRepo;
 
-    @BeforeEach
-    public void setUp(){
-        measureRepo = Mockito.mock(IWorkoutLogRepository.class);
-        workoutLog = new WorkoutLogService(measureRepo);
+    @Test
+    public void testCreateWorkoutLogSuccess(){
+        when(measureRepo.getWorkoutLogById(1)).thenReturn(null);
+
+        WorkoutLogs createWorkoutLog = workoutLog.createWorkoutLog(1, 1, 1, 4, 12, 225.0);
+
+        Assertions.assertNotNull(createWorkoutLog);
+        Assertions.assertEquals(1, createWorkoutLog.getWorkoutID());
+        Assertions.assertEquals(1, createWorkoutLog.getUserID());
+        Assertions.assertEquals(1, createWorkoutLog.getExerciseID());
+        Assertions.assertEquals(4, createWorkoutLog.getSets());
+        Assertions.assertEquals(12, createWorkoutLog.getReps());
+        Assertions.assertEquals(225.0, createWorkoutLog.getWeight());
+
+        verify(measureRepo, times(1)).addWorkoutLog(Mockito.any(WorkoutLogs.class));
+        
     }
+
+    @Test
+    public void testCreateWorkoutLogFailsWhenIdExists(){
+        WorkoutLogs exists = new WorkoutLogs(2, 1, 1, new Date(), 4, 10, 200.0);
+        when(measureRepo.getWorkoutLogById(2)).thenReturn(exists);
+
+        WorkoutLogs newWorkoutLog = workoutLog.createWorkoutLog(2, 3, 2, 4, 12, 225.0);
+
+        Assertions.assertNull(newWorkoutLog);
+
+        verify(measureRepo, never()).addWorkoutLog(Mockito.any(WorkoutLogs.class));
+    }
+
+    @Test
+    public void testGetWorkoutLogsByLogId(){
+        WorkoutLogs exists = new WorkoutLogs(3, 1, 2, new Date(), 5, 15, 250.0);
+        when(measureRepo.getWorkoutLogById(3)).thenReturn(exists);
+
+        WorkoutLogs retrievedLog = workoutLog.getWorkoutLog(3);
+
+        Assertions.assertNotNull(retrievedLog);
+        Assertions.assertEquals(3, retrievedLog.getWorkoutID());
+
+        verify(measureRepo, times(1)).getWorkoutLogById(3);
+    }
+
+    
+
+
+
+
+
+
 
 }

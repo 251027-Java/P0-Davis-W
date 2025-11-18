@@ -26,15 +26,11 @@ public class MeasurementService {
     }
 
     public Measurements getMeasurementsByUserID(int user_id){
-        return measurementRepo.getLatestMeasurement(user_id);
+        return measurementRepo.getMeasurementByUserId(user_id);
     }
 
     public Measurements getMeasurementsById(int measurement_id){
         return measurementRepo.getMeasurementsById(measurement_id);
-    }
-
-    public Measurements getLatestMeasurement(int user_id){
-        return measurementRepo.getLatestMeasurement(user_id);
     }
 
     public List<Measurements> getAllMeasurements(){

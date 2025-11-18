@@ -106,15 +106,54 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
             e.printStackTrace();
         }
     }
+
     @Override
-    public List<WorkoutLogs> getWorkoutLogsByUser(int userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWorkoutLogsByUser'");
+    public WorkoutLogs getWorkoutLogsByUser(int userId) {
+        String sql = "SELECT * FROM GymReports.WorkoutLogs WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                WorkoutLogs workoutLog = new WorkoutLogs(
+                    rs.getInt("workout_id"),
+                    rs.getInt("user_id"),
+                    rs.getInt("exercise_id"),
+                    rs.getDate("log_date"),
+                    rs.getInt("set"),
+                    rs.getInt("reps"),
+                    rs.getDouble("weight_lbs")
+                );
+                return workoutLog;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
     @Override
-    public List<WorkoutLogs> getWorkoutLogsByExercise(int userId, int exerciseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWorkoutLogsByExercise'");
+    public WorkoutLogs getWorkoutLogsByExercise(int userId, int exerciseId) {
+        String sql = "SELECT * FROM GymReports.WorkoutLogs WHERE user_id = ? AND exercise_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.setInt(2, exerciseId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                WorkoutLogs workoutLog = new WorkoutLogs(
+                    rs.getInt("workout_id"),
+                    rs.getInt("user_id"),
+                    rs.getInt("exercise_id"),
+                    rs.getDate("log_date"),
+                    rs.getInt("set"),
+                    rs.getInt("reps"),
+                    rs.getDouble("weight_lbs")
+                );
+                return workoutLog;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -131,8 +170,26 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public WorkoutLogs getWorkoutLogById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWorkoutLogById'");
+        String sql = "SELECT * FROM GymReports.WorkoutLogs WHERE workout_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                WorkoutLogs workoutLog = new WorkoutLogs(
+                    rs.getInt("workout_id"),
+                    rs.getInt("user_id"),
+                    rs.getInt("exercise_id"),
+                    rs.getDate("log_date"),
+                    rs.getInt("set"),
+                    rs.getInt("reps"),
+                    rs.getDouble("weight_lbs")
+                );
+                return workoutLog;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -163,8 +220,24 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public User getUserById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
+        String sql = "SELECT * FROM GymReports.Users WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                User user = new User(
+                    rs.getInt("user_id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("email"),
+                    rs.getDate("date_joined")
+                );
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -205,8 +278,22 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public Exercises getExerciseById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getExerciseById'");
+        String sql = "SELECT * FROM GymReports.Exercises WHERE exercise_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Exercises exercise = new Exercises(
+                    rs.getInt("exercise_id"),
+                    rs.getString("exercise_name"),
+                    rs.getString("muscle_group")
+                );
+                return exercise;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -251,15 +338,28 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     }
 
     @Override
-    public List<Measurements> getMeasurementsByUser(int userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMeasurementsByUser'");
-    }
-
-    @Override
-    public Measurements getLatestMeasurement(int userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLatestMeasurement'");
+    public Measurements getMeasurementByUserId(int userId) {
+        String sql = "SELECT * FROM GymReports.Measurements WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Measurements measurement = new Measurements(
+                    rs.getInt("measurement_id"),
+                    rs.getInt("user_id"),
+                    rs.getDate("log_date"),
+                    rs.getDouble("weight_lbs"),
+                    rs.getDouble("chest_inches"),
+                    rs.getDouble("arms_inches"),
+                    rs.getDouble("waist_inches"),
+                    rs.getDouble("bodyfat_percent")
+                );
+                return measurement;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -276,8 +376,27 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public Measurements getMeasurementsById(int measurementId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMeasurementsById'");
+        String sql = "SELECT * FROM GymReports.Measurements WHERE measurement_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, measurementId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Measurements measurement = new Measurements(
+                    rs.getInt("measurement_id"),
+                    rs.getInt("user_id"),
+                    rs.getDate("log_date"),
+                    rs.getDouble("weight_lbs"),
+                    rs.getDouble("chest_inches"),
+                    rs.getDouble("arms_inches"),
+                    rs.getDouble("waist_inches"),
+                    rs.getDouble("bodyfat_percent")
+                );
+                return measurement;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -310,14 +429,40 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public UserExercises getFavoriteByUserId(int userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFavoriteByUserId'");
+        String sql = "SELECT * FROM GymReports.UserExercises WHERE user_id = ? LIMIT 1";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                UserExercises userExercise = new UserExercises(
+                    rs.getInt("user_id"),
+                    rs.getInt("exercise_id")
+                );
+                return userExercise;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public UserExercises getFavoriteByExerciseId(int exerciseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFavoriteByExerciseId'");
+        String sql = "SELECT * FROM GymReports.UserExercises WHERE exercise_id = ? LIMIT 1";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, exerciseId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                UserExercises userExercise = new UserExercises(
+                    rs.getInt("user_id"),
+                    rs.getInt("exercise_id")
+                );
+                return userExercise;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

@@ -61,5 +61,17 @@ public class FavoriteExerciseTest {
         verify(mockUserExerciseRepo, times(1)).addUserExercise(Mockito.any(UserExercises.class));
     }
 
+    @Test
+    public void testAddFavoriteExerciseFailsWhenAlreadyExists(){
+        UserExercises exists = new UserExercises(1, 1);
+        when(mockUserExerciseRepo.getFavoriteByUserId(1)).thenReturn(exists);
+        
+        UserExercises favorite = userExercise.addFavoriteExercise(1, 1);
+
+        Assertions.assertNull(favorite);
+
+        verify(mockUserExerciseRepo, never()).addUserExercise(Mockito.any(UserExercises.class));
+    }
+
 
 }

@@ -7,8 +7,8 @@ import org.example.WorkoutLogs;
 public interface IWorkoutLogRepository {
     //Workout Logs
     void addWorkoutLog(WorkoutLogs workoutLog);
-    List<WorkoutLogs> getWorkoutLogsByUser(int userId);
-    List<WorkoutLogs> getWorkoutLogsByExercise(int userId, int exerciseId);
+    WorkoutLogs getWorkoutLogsByUser(int userId);
+    WorkoutLogs getWorkoutLogsByExercise(int userId, int exerciseId);
     List<WorkoutLogs> getAllWorkoutLogs();
     void updateWorkoutLog(WorkoutLogs workoutLog);
     void deleteWorkoutLog(int workoutId);
