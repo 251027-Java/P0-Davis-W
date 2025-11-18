@@ -79,6 +79,10 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
 
             System.out.println("All tables created");
+            
+        } catch (Exception e){
+            e.printStackTrace();
+
         }
     }
 

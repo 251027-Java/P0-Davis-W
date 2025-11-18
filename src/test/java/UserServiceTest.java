@@ -26,12 +26,6 @@ public class UserServiceTest {
     @Mock
     private IUserRepository mockRepo;
 
-    @BeforeEach
-    public void setUp(){
-        mockRepo = Mockito.mock(IUserRepository.class);
-        user = new UserService(mockRepo);
-    }
-
     @Test
     public void testCreateUserSuccess(){
         when(mockRepo.getUserById(1)).thenReturn(null);

@@ -7,13 +7,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.*;
 
-import java.util.Date;
-
-import org.checkerframework.checker.units.qual.A;
 import org.example.Exercises;
 import org.example.Repository.IExercisesRepository;
 import org.example.Service.ExerciseService;
-import org.example.Service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -27,10 +23,18 @@ public class ExerciseServiceTest {
     @Mock 
     private IExercisesRepository mockRepo;
 
-    @BeforeEach
-    public void setUp(){
-        mockRepo = Mockito.mock(IExercisesRepository.class);
-        exercise = new ExerciseService(mockRepo);
+    @Test
+    public void testCreateExerciseSuccess(){
+        when(mockRepo.getExerciseById(1)).thenReturn(null);
+
+        Exercises createExercise = exercise.createExercise(1, "Push Up", "Chest");
+
+        Assertions.assertNotNull(createExercise);
+        Assertions.assertEquals(1, createExercise.getID());
+        Assertions.assertEquals("Push Up", createExercise.getName());
+        Assertions.assertEquals("Chest", createExercise.getMuscleGroup());
+
+        verify(mockRepo, times(1)).addExercise(Mockito.any(Exercises.class));
     }
 
 }
