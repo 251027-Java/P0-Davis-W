@@ -1,8 +1,5 @@
 package org.example.Repository;
 
-import java.util.List;
-
-import org.example.Exercises;
 import org.example.UserExercises;
 
 public interface IUserExercises {

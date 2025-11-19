@@ -1,7 +1,5 @@
 package org.example.Service;
 
-import java.util.List;
-
 import org.example.Measurements;
 import org.example.Repository.IMeasurementsRepository;
 
@@ -33,10 +31,6 @@ public class MeasurementService {
         return measurementRepo.getMeasurementsById(measurement_id);
     }
 
-    public List<Measurements> getAllMeasurements(){
-        return measurementRepo.getAllMeasurements();
-    }
-
     public boolean deleteMeasurement(int measurement_id){
         if(measurementRepo.getMeasurementsById(measurement_id) == null){
             return false;
@@ -50,7 +44,6 @@ public class MeasurementService {
         if(existing == null){
             return false;
         }
-        existing.setMeasurementID(measurement_id);
         existing.setUserID(user_id);
         existing.setWeight(weight);
         existing.setChest(chest_inches);

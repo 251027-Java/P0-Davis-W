@@ -1,7 +1,5 @@
 package org.example.Service;
 
-import java.util.List;
-
 import org.example.Exercises;
 import org.example.Repository.IExercisesRepository;
 
@@ -37,25 +35,15 @@ public class ExerciseService {
         return true;
     }
 
-    public List<Exercises> getAllExercises(){
-        return exercisesRepository.getAllExercises();
-    }
-
     public boolean updateExercises(int id, String name, String muscle_group){
         Exercises existing = exercisesRepository.getExerciseById(id);
         if(existing == null){
             return false;
         }
-        existing.setID(id);
         existing.setName(name);
         existing.setMuscleGroup(muscle_group);
         exercisesRepository.updateExercise(existing);
         return true;
-    }
-
-    public List<Exercises> getExercisesByMuscleGroup(String muscle_group){
-        List<Exercises> allExercises = exercisesRepository.getAllExercises();
-        return allExercises.stream().filter(exercise -> exercise.getMuscleGroup().equalsIgnoreCase(muscle_group)).toList();
     }
 
 

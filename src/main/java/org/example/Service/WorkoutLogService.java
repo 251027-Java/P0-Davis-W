@@ -1,8 +1,6 @@
 package org.example.Service;
 
 import java.util.Date;
-import java.util.List;
-
 import org.example.WorkoutLogs;
 import org.example.Repository.IWorkoutLogRepository;
 
@@ -44,7 +42,6 @@ public class WorkoutLogService {
         if(existing == null){
             return false;
         }
-        existing.setWorkoutID(workout_id);
         existing.setSets(sets);
         existing.setReps(reps);
         existing.setWeight(weight);

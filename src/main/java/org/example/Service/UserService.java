@@ -1,8 +1,6 @@
 package org.example.Service;
 
 import java.util.Date;
-import java.util.List;
-
 import org.example.User;
 import org.example.Repository.IUserRepository;
 
@@ -36,10 +34,6 @@ public class UserService {
         }
         userRepository.deleteUser(id);
         return true;
-    }
-
-    public List<User> getAllUsers() {
-        return userRepository.getAllUsers();
     }
 
     public boolean updateUser(int id, String first_name, String last_name, String email) {

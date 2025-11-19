@@ -1,8 +1,6 @@
 package org.example.Repository;
 
 import java.sql.*;
-import java.util.List;
-
 import org.example.Exercises;
 import org.example.Measurements;
 import org.example.User;
@@ -217,12 +215,6 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
         return null;
     }
 
-    @Override
-    public List<WorkoutLogs> getAllWorkoutLogs() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllWorkoutLogs'");
-    }
-
 
 
 
@@ -263,12 +255,6 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllUsers'");
     }
 
     @Override
@@ -342,12 +328,6 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public List<Exercises> getAllExercises() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllExercises'");
     }
 
     @Override
@@ -493,12 +473,6 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public List<Measurements> getAllMeasurements() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllMeasurements'");
     }
 
 

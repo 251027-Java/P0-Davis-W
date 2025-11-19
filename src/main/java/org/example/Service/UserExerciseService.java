@@ -1,23 +1,17 @@
 package org.example.Service;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.example.Exercises;
 import org.example.UserExercises;
 import org.example.Repository.IUserExercises;
-import org.example.Repository.IUserRepository;
 
 public class UserExerciseService {
 
     //Field
     private IUserExercises favortieExercises;
-    private IUserRepository userRepo;
+
 
     // Constructor
-    public UserExerciseService(IUserExercises favortieExercises, IUserRepository userRepo){
+    public UserExerciseService(IUserExercises favortieExercises){
         this.favortieExercises = favortieExercises;
-        this.userRepo = userRepo;
     }
 
     //Methods
@@ -38,13 +32,21 @@ public class UserExerciseService {
         return true;
     }
 
-    public List<Exercises> getFavoritesForUser(int user_id) {
-        if (userRepo != null && userRepo.getUserById(user_id) == null) {
-            return Collections.emptyList();
+    public boolean updateFavoriteExercise(int userId, int exerciseId){
+        UserExercises existing = favortieExercises.getFavoriteByUserId(userId);
+        if(existing == null){
+            return false;
         }
-        List<Exercises> favs = favortieExercises.getExercisesForUser(user_id);
-        return favs == null ? Collections.emptyList() : favs;
+        existing.setExerciseID(exerciseId);
+        favortieExercises.updateUserExercise(existing);
+        return true;
     }
+
+    public UserExercises getFavoritesByUser(int user_id) {
+        return favortieExercises.getFavoriteByUserId(user_id);
+    }
+
+    
 
         
 
