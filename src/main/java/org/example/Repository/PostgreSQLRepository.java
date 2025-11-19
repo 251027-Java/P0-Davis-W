@@ -78,7 +78,7 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
                     "PRIMARY KEY (user_id, exercise_id))");
 
 
-            System.out.println("All tables created");
+            // System.out.println("All tables created");
             
         } catch (Exception e){
             e.printStackTrace();
@@ -158,14 +158,39 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public void updateWorkoutLog(WorkoutLogs workoutLog) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateWorkoutLog'");
+        String sql = "UPDATE GymReports.WorkoutLogs SET exercise_id = ?, set = ?, reps = ?, weight_lbs = ? WHERE workout_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, workoutLog.getExerciseID());
+            stmt.setInt(2, workoutLog.getSets());
+            stmt.setInt(3, workoutLog.getReps());
+            stmt.setDouble(4, workoutLog.getWeight());
+            stmt.setInt(5, workoutLog.getWorkoutID());
+            int updateLog = stmt.executeUpdate();
+            if (updateLog > 0) {
+                System.out.println("Log updated successfully");
+            } else { 
+                System.err.println("Log does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void deleteWorkoutLog(int workoutId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteWorkoutLog'");
+        String sql = "DELETE FROM GymReports.WorkoutLogs WHERE workout_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, workoutId);
+            int deletedLog = stmt.executeUpdate();
+            if (deletedLog > 0) {
+                System.out.println("Log deleted successfully");
+            } else {
+                System.err.println("Log does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -248,14 +273,37 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public void updateUser(User user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+        String sql = "UPDATE GymReports.Users SET first_name = ?, last_name = ?, email = ? WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, user.getFirstName());
+            stmt.setString(2, user.getLastName());
+            stmt.setString(3, user.getEmail());
+            stmt.setInt(4, user.getID());
+            int updateUser = stmt.executeUpdate();
+            if (updateUser > 0) {
+                System.out.println("User updated successfully");
+            } else { 
+                System.err.println("User does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteUser(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+        String sql = "DELETE FROM GymReports.Users WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int deletedUser = stmt.executeUpdate();
+            if (deletedUser > 0) {
+                System.out.println("User deleted successfully");
+            } else {
+                System.err.println("User does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -304,14 +352,37 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public void updateExercise(Exercises exercise) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateExercise'");
+        String sql = "UPDATE GymReports.Exercises SET exercise_name = ?, muscle_group = ? WHERE exercise_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, exercise.getName());
+            stmt.setString(2, exercise.getMuscleGroup());
+            stmt.setInt(4, exercise.getID());
+            int updateExercise = stmt.executeUpdate();
+            if (updateExercise > 0) {
+                System.out.println("Exercise updated successfully");
+            } else { 
+                System.err.println("Exercise does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void deleteExercise(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteExercise'");
+        String sql = "DELETE FROM GymReports.Exercises WHERE exercise_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int deletedExercise = stmt.executeUpdate();
+            if (deletedExercise > 0) {
+                System.out.println("Exercise deleted successfully");
+            } else {
+                System.err.println("Exercise does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -364,14 +435,39 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public void updateMeasurement(Measurements measurement) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateMeasurement'");
+        String sql = "UPDATE GymReports.Measurements SET weight_lbs = ?, chest_inches = ?, arms_inches = ?, waist_inches = ?, bodyfat_percent = ? WHERE measurement_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDouble(1, measurement.getWeight());
+            stmt.setDouble(2, measurement.getChest());
+            stmt.setDouble(3, measurement.getArms());
+            stmt.setDouble(4, measurement.getWaist());
+            stmt.setDouble(5, measurement.getBodyFat());
+            stmt.setDouble(6, measurement.getMeasurementID());
+            int updateMeasurement = stmt.executeUpdate();
+            if (updateMeasurement > 0) {
+                System.out.println("Measurements updated successfully");
+            } else { 
+                System.err.println("Measurements does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteMeasurement(int measurementId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteMeasurement'");
+        String sql = "DELETE FROM GymReports.Measurements WHERE measurement_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, measurementId);
+            int deletedMeasurement = stmt.executeUpdate();
+            if (deletedMeasurement > 0) {
+                System.out.println("Measurement deleted successfully");
+            } else {
+                System.err.println("Measurement does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -423,8 +519,18 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
 
     @Override
     public void deleteUserExercise(int exerciseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUserExercise'");
+        String sql = "DELETE FROM GymReports.UserExercises WHERE exercise_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, exerciseId);
+            int deletedFavoriteExercise = stmt.executeUpdate();
+            if (deletedFavoriteExercise > 0) {
+                System.out.println("User favorite exercise deleted successfully");
+            } else {
+                System.err.println("Favorite Exercise does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -466,9 +572,20 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
     }
 
     @Override
-    public List<Exercises> getExercisesForUser(int userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getExercisesForUser'");
+    public void updateUserExercise(UserExercises userExercises) {
+        String sql = "UPDATE GymReports.UserExercises SET exercise_id = ? WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userExercises.getExerciseID());
+            stmt.setInt(2, userExercises.getUserID());
+            int updateFavoriteExercise = stmt.executeUpdate();
+            if (updateFavoriteExercise > 0) {
+                System.out.println("User favorite exercise updated successfully");
+            } else { 
+                System.err.println("User favorite exercise does not exist");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
 

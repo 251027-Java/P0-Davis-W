@@ -10,5 +10,5 @@ public interface IUserExercises {
     void deleteUserExercise(int exerciseId);
     UserExercises getFavoriteByUserId(int userId);
     UserExercises getFavoriteByExerciseId(int exerciseId);
-    List<Exercises> getExercisesForUser(int userId);
+    void updateUserExercise(UserExercises userExercise);
 }
