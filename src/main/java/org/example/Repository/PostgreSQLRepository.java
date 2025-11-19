@@ -50,7 +50,7 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
                     "chest_inches NUMERIC(5,2)," +
                     "arms_inches NUMERIC(5,2)," +
                     "waist_inches NUMERIC(5,2)," +
-                    "bodyfat_percent DECIMAL(3,2))");
+                    "bodyfat_percent DECIMAL(5,2))");
 
             // Creating Exercises table
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GymReports.Exercises (" +
@@ -336,7 +336,7 @@ IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExerc
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, exercise.getName());
             stmt.setString(2, exercise.getMuscleGroup());
-            stmt.setInt(4, exercise.getID());
+            stmt.setInt(3, exercise.getID());
             int updateExercise = stmt.executeUpdate();
             if (updateExercise > 0) {
                 System.out.println("Exercise updated successfully");

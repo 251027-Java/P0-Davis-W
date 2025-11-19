@@ -2,20 +2,26 @@ package org.example.Service;
 
 import org.example.Measurements;
 import org.example.Repository.IMeasurementsRepository;
+import org.example.Repository.IUserRepository;
 
 public class MeasurementService {
 
     //Field
     private IMeasurementsRepository measurementRepo;
+    private IUserRepository userRepo;
 
     // Constructor
-    public MeasurementService(IMeasurementsRepository measurementRepo){
+    public MeasurementService(IMeasurementsRepository measurementRepo, IUserRepository userRepo){
         this.measurementRepo = measurementRepo;
+        this.userRepo = userRepo;
     }
 
     //Methods
     public Measurements createMeasurements(int measurement_id, int user_id, double weight, double chest_inches, double arm_inches, double waist_inches, double body_fat_percent){
         if(measurementRepo.getMeasurementsById(measurement_id) != null){
+            return null;
+        }
+        if(userRepo.getUserById(user_id) == null){
             return null;
         }
         Measurements newMeasurement = new Measurements(measurement_id, user_id, new java.util.Date(), weight, chest_inches, arm_inches, waist_inches, body_fat_percent);
@@ -42,6 +48,10 @@ public class MeasurementService {
     public boolean updateMeasurement(int measurement_id, int user_id, double weight, double chest_inches, double arm_inches, double waist_inches, double body_fat_percent){
         Measurements existing = measurementRepo.getMeasurementsById(measurement_id);
         if(existing == null){
+            return false;
+        }
+        // Validate that the user exists
+        if(userRepo.getUserById(user_id) == null){
             return false;
         }
         existing.setUserID(user_id);
