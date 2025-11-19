@@ -7,9 +7,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.*;
 
-import java.util.Date;
-
-import org.checkerframework.checker.units.qual.A;
 import org.example.Exercises;
 import org.example.User;
 import org.example.UserExercises;
@@ -20,7 +17,6 @@ import org.example.Service.ExerciseService;
 import org.example.Service.UserExerciseService;
 import org.example.Service.UserService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 @ExtendWith(MockitoExtension.class)
 public class FavoriteExerciseTest {

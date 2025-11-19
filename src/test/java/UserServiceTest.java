@@ -9,12 +9,10 @@ import static org.mockito.Mockito.*;
 
 import java.util.Date;
 
-import org.checkerframework.checker.units.qual.A;
 import org.example.User;
 import org.example.Repository.IUserRepository;
 import org.example.Service.UserService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {

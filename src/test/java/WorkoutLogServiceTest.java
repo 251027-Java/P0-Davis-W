@@ -5,19 +5,16 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.*;
 
 import java.util.Date;
 
-import org.checkerframework.checker.units.qual.A;
 import org.example.WorkoutLogs;
-import org.example.Repository.IMeasurementsRepository;
-import org.example.Repository.IUserRepository;
 import org.example.Repository.IWorkoutLogRepository;
-import org.example.Service.UserService;
 import org.example.Service.WorkoutLogService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 @ExtendWith(MockitoExtension.class)
 public class WorkoutLogServiceTest {
@@ -71,7 +68,22 @@ public class WorkoutLogServiceTest {
         verify(measureRepo, times(1)).getWorkoutLogById(3);
     }
 
-    
+    @Test
+    public void testUpdateLog() {
+        WorkoutLogs exists = new WorkoutLogs(1, 1, 1, new Date(), 3, 8, 145.0);
+        when(measureRepo.getWorkoutLogById(1)).thenReturn(exists);
+        doNothing().when(measureRepo).updateWorkoutLog(any(WorkoutLogs.class));
+
+        boolean result = workoutLog.updateWorkoutLog(1, 2, 4, 405);
+
+        Assertions.assertTrue(result);
+
+        verify(measureRepo).updateWorkoutLog(argThat(log ->
+                log.getSets() == 2 &&
+                log.getReps() == 4 &&
+                log.getWeight() == 405
+        ));
+    }
 
 
 

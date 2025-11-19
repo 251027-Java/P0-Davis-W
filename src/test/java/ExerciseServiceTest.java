@@ -11,7 +11,6 @@ import org.example.Exercises;
 import org.example.Repository.IExercisesRepository;
 import org.example.Service.ExerciseService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 
 @ExtendWith(MockitoExtension.class)
