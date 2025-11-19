@@ -60,7 +60,7 @@ public class UserInteraction {
                     favoriteExerciseMenu();
                     break;
                 case 0:
-                    System.out.println("Thank you for using Body Tracker! Goodbye!");
+                    System.out.println("Thank you for using Gym Reports Tracker! Goodbye!");
                     running = false;
                     break;
                 default:
