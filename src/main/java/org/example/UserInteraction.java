@@ -24,7 +24,7 @@ public class UserInteraction {
     }
 
     public void start() {
-        System.out.println("\n=== Welcome to Body Tracker Application ===");
+        System.out.println("\n=== WELCOME TO GYM REPORTS APPLICATION ===");
         runMainMenu();
         scanner.close();
     }
@@ -64,7 +64,7 @@ public class UserInteraction {
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.err.println("Invalid option. Please try again.");
             }
         }
     }
@@ -102,7 +102,7 @@ public class UserInteraction {
                     back = true;
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.err.println("Invalid option. Please try again.");
             }
         }
     }
@@ -121,7 +121,7 @@ public class UserInteraction {
         if (user != null) {
             System.out.println("User created successfully!");
         } else {
-            System.out.println("Failed to create user. User ID may already exist.");
+            System.err.println("Failed to create user. User ID may already exist.");
         }
     }
 
@@ -130,9 +130,10 @@ public class UserInteraction {
         int id = getIntInput();
         var user = userService.getUser(id);
         if (user != null) {
-            System.out.println("User found: " + user.getFirstName() + " " + user.getLastName() + " " + user.getEmail());
+            System.out.println("User: " + user.getFirstName() + " " + user.getLastName());
+            System.out.println("Email: "+user.getEmail());
         } else {
-            System.out.println("User not found.");
+            System.err.println("User not found.");
         }
     }
 
@@ -149,7 +150,7 @@ public class UserInteraction {
         if (userService.updateUser(id, firstName, lastName, email)) {
             System.out.println("User updated successfully!");
         } else {
-            System.out.println("Failed to update user. User may not exist or email is invalid.");
+            System.err.println("Failed to update user. User may not exist or email is invalid.");
         }
     }
 
@@ -159,7 +160,7 @@ public class UserInteraction {
         if (userService.deleteUser(id)) {
             System.out.println("User deleted successfully!");
         } else {
-            System.out.println("Failed to delete user. User may not exist.");
+            System.err.println("Failed to delete user. User may not exist.");
         }
     }
 
@@ -196,7 +197,7 @@ public class UserInteraction {
                     back = true;
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.err.println("Invalid option. Please try again.");
             }
         }
     }
@@ -213,7 +214,7 @@ public class UserInteraction {
         if (exercise != null) {
             System.out.println("Exercise created successfully!");
         } else {
-            System.out.println("Failed to create exercise. Exercise ID may already exist.");
+            System.err.println("Failed to create exercise. Exercise ID may already exist.");
         }
     }
 
@@ -222,9 +223,10 @@ public class UserInteraction {
         int id = getIntInput();
         var exercise = exerciseService.getExercises(id);
         if (exercise != null) {
-            System.out.println("Exercise found: " + exercise.getName() + " Muscle Group: " + exercise.getMuscleGroup());
+            System.out.println("Exercise: " + exercise.getName());
+            System.out.println("Muscle Group: "+ exercise.getMuscleGroup());
         } else {
-            System.out.println("Exercise not found.");
+            System.err.println("Exercise not found.");
         }
     }
 
@@ -239,7 +241,7 @@ public class UserInteraction {
         if (exerciseService.updateExercises(id, name, muscleGroup)) {
             System.out.println("Exercise updated successfully!");
         } else {
-            System.out.println("Failed to update exercise. Exercise may not exist.");
+            System.err.println("Failed to update exercise. Exercise may not exist.");
         }
     }
 
@@ -249,7 +251,7 @@ public class UserInteraction {
         if (exerciseService.deleteExercise(id)) {
             System.out.println("Exercise deleted successfully!");
         } else {
-            System.out.println("Failed to delete exercise. Exercise may not exist.");
+            System.err.println("Failed to delete exercise. Exercise may not exist.");
         }
     }
 
@@ -292,7 +294,7 @@ public class UserInteraction {
                     back = true;
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.err.println("Invalid option. Please try again.");
             }
         }
     }
@@ -317,7 +319,7 @@ public class UserInteraction {
         if (measurement != null) {
             System.out.println("Measurement created successfully!");
         } else {
-            System.out.println("Failed to create measurement. Measurement ID may already exist or User ID does not exist.");
+            System.err.println("Failed to create measurement. Measurement ID may already exist or User ID does not exist.");
         }
     }
 
@@ -334,7 +336,7 @@ public class UserInteraction {
             System.out.println("  Waist: " + measurement.getWaist() + " inches");
             System.out.println("  Body Fat: " + measurement.getBodyFat() + "%");
         } else {
-            System.out.println("Measurement not found.");
+            System.err.println("Measurement not found.");
         }
     }
 
@@ -350,15 +352,13 @@ public class UserInteraction {
             System.out.println("  Waist: " + measurement.getWaist() + " inches");
             System.out.println("  Body Fat: " + measurement.getBodyFat() + "%");
         } else {
-            System.out.println("Measurement not found for this user.");
+            System.err.println("Measurement not found for this user.");
         }
     }
 
     private void updateMeasurement() {
         System.out.print("Enter measurement ID to update: ");
         int measurementId = getIntInput();
-        System.out.print("Enter user ID: ");
-        int userId = getIntInput();
         System.out.print("Enter new weight (lbs): ");
         double weight = getDoubleInput();
         System.out.print("Enter new chest measurement (inches): ");
@@ -370,10 +370,10 @@ public class UserInteraction {
         System.out.print("Enter new body fat percentage: ");
         double bodyFat = getDoubleInput();
 
-        if (measurementService.updateMeasurement(measurementId, userId, weight, chest, arms, waist, bodyFat)) {
+        if (measurementService.updateMeasurement(measurementId, weight, chest, arms, waist, bodyFat)) {
             System.out.println("Measurement updated successfully!");
         } else {
-            System.out.println("Failed to update measurement. Measurement may not exist or User ID does not exist.");
+            System.err.println("Failed to update measurement. Measurement may not exist or User ID does not exist.");
         }
     }
 
@@ -383,7 +383,7 @@ public class UserInteraction {
         if (measurementService.deleteMeasurement(id)) {
             System.out.println("Measurement deleted successfully!");
         } else {
-            System.out.println("Failed to delete measurement. Measurement may not exist.");
+            System.err.println("Failed to delete measurement. Measurement may not exist.");
         }
     }
 
@@ -430,7 +430,7 @@ public class UserInteraction {
                     back = true;
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.err.println("Invalid option. Please try again.");
             }
         }
     }
@@ -453,7 +453,7 @@ public class UserInteraction {
         if (log != null) {
             System.out.println("Workout log created successfully!");
         } else {
-            System.out.println("Failed to create workout log. Workout ID may already exist, or User ID/Exercise ID does not exist.");
+            System.err.println("Failed to create workout log. Workout ID may already exist, or User ID/Exercise ID does not exist.");
         }
     }
 
@@ -470,7 +470,7 @@ public class UserInteraction {
             System.out.println("  Weight: " + log.getWeight() + " lbs");
             System.out.println("  Date: " + log.getLogDate());
         } else {
-            System.out.println("Workout log not found.");
+            System.err.println("Workout log not found.");
         }
     }
 
@@ -486,7 +486,7 @@ public class UserInteraction {
             System.out.println("  Weight: " + log.getWeight() + " lbs");
             System.out.println("  Date: " + log.getLogDate());
         } else {
-            System.out.println("No workout logs found for this user.");
+            System.err.println("No workout logs found for this user.");
         }
     }
 
@@ -503,7 +503,7 @@ public class UserInteraction {
             System.out.println("  Weight: " + log.getWeight() + " lbs");
             System.out.println("  Date: " + log.getLogDate());
         } else {
-            System.out.println("No workout log found for this user and exercise.");
+            System.err.println("No workout log found for this user and exercise.");
         }
     }
 
@@ -520,7 +520,7 @@ public class UserInteraction {
         if (workoutLogService.updateWorkoutLog(workoutId, sets, reps, weight)) {
             System.out.println("Workout log updated successfully!");
         } else {
-            System.out.println("Failed to update workout log. Workout log may not exist.");
+            System.err.println("Failed to update workout log. Workout log may not exist.");
         }
     }
 
@@ -530,7 +530,7 @@ public class UserInteraction {
         if (workoutLogService.deleteWorkoutLog(id)) {
             System.out.println("Workout log deleted successfully!");
         } else {
-            System.out.println("Failed to delete workout log. Workout log may not exist.");
+            System.err.println("Failed to delete workout log. Workout log may not exist.");
         }
     }
 
@@ -567,7 +567,7 @@ public class UserInteraction {
                     back = true;
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.err.println("Invalid option. Please try again.");
             }
         }
     }
@@ -582,7 +582,7 @@ public class UserInteraction {
         if (favorite != null) {
             System.out.println("Favorite exercise added successfully!");
         } else {
-            System.out.println("Failed to add favorite exercise. User may already have a favorite exercise, or User ID/Exercise ID does not exist.");
+            System.err.println("Failed to add favorite exercise. User may already have a favorite exercise, or User ID/Exercise ID does not exist.");
         }
     }
 
@@ -595,7 +595,7 @@ public class UserInteraction {
             System.out.println("  User ID: " + favorite.getUserID());
             System.out.println("  Exercise ID: " + favorite.getExerciseID());
         } else {
-            System.out.println("No favorite exercise found for this user.");
+            System.err.println("No favorite exercise found for this user.");
         }
     }
 
@@ -608,7 +608,7 @@ public class UserInteraction {
         if (userExerciseService.updateFavoriteExercise(userId, exerciseId)) {
             System.out.println("Favorite exercise updated successfully!");
         } else {
-            System.out.println("Failed to update favorite exercise. Favorite exercise may not exist or Exercise ID does not exist.");
+            System.err.println("Failed to update favorite exercise. Favorite exercise may not exist or Exercise ID does not exist.");
         }
     }
 
@@ -618,7 +618,7 @@ public class UserInteraction {
         if (userExerciseService.deleteFavoriteExercise(exerciseId)) {
             System.out.println("Favorite exercise deleted successfully!");
         } else {
-            System.out.println("Failed to delete favorite exercise. Favorite exercise may not exist.");
+            System.err.println("Failed to delete favorite exercise. Favorite exercise may not exist.");
         }
     }
 
@@ -638,7 +638,7 @@ public class UserInteraction {
                 String input = scanner.nextLine().trim();
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.print("Invalid input. Please enter a number: ");
+                System.err.print("Invalid input. Please enter a number: ");
             }
         }
     }
@@ -651,7 +651,7 @@ public class UserInteraction {
                 String input = scanner.nextLine().trim();
                 return Double.parseDouble(input);
             } catch (NumberFormatException e) {
-                System.out.print("Invalid input. Please enter a number: ");
+                System.err.print("Invalid input. Please enter a number: ");
             }
         }
     }

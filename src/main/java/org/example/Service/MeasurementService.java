@@ -45,16 +45,11 @@ public class MeasurementService {
         return true;
     }
 
-    public boolean updateMeasurement(int measurement_id, int user_id, double weight, double chest_inches, double arm_inches, double waist_inches, double body_fat_percent){
+    public boolean updateMeasurement(int measurement_id, double weight, double chest_inches, double arm_inches, double waist_inches, double body_fat_percent){
         Measurements existing = measurementRepo.getMeasurementsById(measurement_id);
         if(existing == null){
             return false;
         }
-        // Validate that the user exists
-        if(userRepo.getUserById(user_id) == null){
-            return false;
-        }
-        existing.setUserID(user_id);
         existing.setWeight(weight);
         existing.setChest(chest_inches);
         existing.setArms(arm_inches);
