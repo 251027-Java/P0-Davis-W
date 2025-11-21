@@ -1,7 +1,7 @@
 package org.example.Service;
 
 import java.util.Date;
-import org.example.WorkoutLogs;
+import org.example.ObjectClasses.WorkoutLogs;
 import org.example.Repository.IWorkoutLogRepository;
 import org.example.Repository.IUserRepository;
 import org.example.Repository.IExercisesRepository;

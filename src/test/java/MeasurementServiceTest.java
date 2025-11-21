@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.Date;
 
-import org.example.Measurements;
+import org.example.ObjectClasses.Measurements;
 import org.example.Repository.IMeasurementsRepository;
 import org.example.Service.MeasurementService;
 import org.junit.jupiter.api.Assertions;

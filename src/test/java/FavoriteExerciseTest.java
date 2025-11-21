@@ -7,9 +7,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.*;
 
-import org.example.Exercises;
-import org.example.User;
-import org.example.UserExercises;
+import org.example.ObjectClasses.Exercises;
+import org.example.ObjectClasses.User;
+import org.example.ObjectClasses.UserExercises;
 import org.example.Repository.IExercisesRepository;
 import org.example.Repository.IUserExercises;
 import org.example.Repository.IUserRepository;

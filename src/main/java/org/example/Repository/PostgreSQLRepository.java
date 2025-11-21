@@ -1,11 +1,11 @@
 package org.example.Repository;
 
 import java.sql.*;
-import org.example.Exercises;
-import org.example.Measurements;
-import org.example.User;
-import org.example.UserExercises;
-import org.example.WorkoutLogs;
+import org.example.ObjectClasses.Exercises;
+import org.example.ObjectClasses.Measurements;
+import org.example.ObjectClasses.User;
+import org.example.ObjectClasses.UserExercises;
+import org.example.ObjectClasses.WorkoutLogs;
 
 public class PostgreSQLRepository implements IUserRepository,
 IMeasurementsRepository, IExercisesRepository, IWorkoutLogRepository, IUserExercises {

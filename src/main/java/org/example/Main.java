@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.ObjectClasses.*;
 import org.example.Repository.PostgreSQLRepository;
 import org.example.Service.*;
 

@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.Date;
 
-import org.example.User;
+import org.example.ObjectClasses.User;
 import org.example.Repository.IUserRepository;
 import org.example.Service.UserService;
 import org.junit.jupiter.api.Assertions;

@@ -1,7 +1,7 @@
 package org.example.Service;
 
 import java.util.Date;
-import org.example.User;
+import org.example.ObjectClasses.User;
 import org.example.Repository.IUserRepository;
 
 public class UserService {

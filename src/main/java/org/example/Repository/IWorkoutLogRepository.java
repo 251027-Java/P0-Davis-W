@@ -1,6 +1,6 @@
 package org.example.Repository;
 
-import org.example.WorkoutLogs;
+import org.example.ObjectClasses.WorkoutLogs;
 
 public interface IWorkoutLogRepository {
     //Workout Logs

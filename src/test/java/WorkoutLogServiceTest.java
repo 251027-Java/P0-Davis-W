@@ -11,7 +11,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.Date;
 
-import org.example.WorkoutLogs;
+import org.example.ObjectClasses.WorkoutLogs;
 import org.example.Repository.IWorkoutLogRepository;
 import org.example.Service.WorkoutLogService;
 import org.junit.jupiter.api.Assertions;

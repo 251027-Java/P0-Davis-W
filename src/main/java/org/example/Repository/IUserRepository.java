@@ -1,6 +1,6 @@
 package org.example.Repository;
 
-import org.example.User;
+import org.example.ObjectClasses.User;
 
 public interface IUserRepository {
     //Users

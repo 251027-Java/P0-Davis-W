@@ -1,4 +1,4 @@
-package org.example;
+package org.example.ObjectClasses;
 
 import org.example.Service.*;
 import java.util.Scanner;

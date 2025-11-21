@@ -1,6 +1,6 @@
 package org.example.Repository;
 
-import org.example.Measurements;
+import org.example.ObjectClasses.Measurements;
 
 public interface IMeasurementsRepository {
     //Measurements

@@ -7,7 +7,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.*;
 
-import org.example.Exercises;
+import org.example.ObjectClasses.Exercises;
 import org.example.Repository.IExercisesRepository;
 import org.example.Service.ExerciseService;
 import org.junit.jupiter.api.Assertions;

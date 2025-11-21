@@ -1,6 +1,6 @@
 package org.example.Service;
 
-import org.example.Exercises;
+import org.example.ObjectClasses.Exercises;
 import org.example.Repository.IExercisesRepository;
 
 public class ExerciseService {

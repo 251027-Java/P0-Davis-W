@@ -1,6 +1,6 @@
 package org.example.Service;
 
-import org.example.Measurements;
+import org.example.ObjectClasses.Measurements;
 import org.example.Repository.IMeasurementsRepository;
 import org.example.Repository.IUserRepository;
 

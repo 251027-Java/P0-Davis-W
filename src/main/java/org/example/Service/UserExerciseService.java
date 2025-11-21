@@ -1,6 +1,6 @@
 package org.example.Service;
 
-import org.example.UserExercises;
+import org.example.ObjectClasses.UserExercises;
 import org.example.Repository.IUserExercises;
 import org.example.Repository.IUserRepository;
 import org.example.Repository.IExercisesRepository;

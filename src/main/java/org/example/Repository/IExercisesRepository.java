@@ -1,6 +1,6 @@
 package org.example.Repository;
 
-import org.example.Exercises;
+import org.example.ObjectClasses.Exercises;
 
 public interface IExercisesRepository {
     //Exercises
